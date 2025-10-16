@@ -4,8 +4,12 @@ import { useState } from "react";
 import Particles from "@/components/particles";
 import { FcGoogle } from "react-icons/fc";
 import GridBackground from "@/components/gridBackground";
+import axios from "axios";
+import { useUser } from "@/context/userContext";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
+    const { username, setUsername } = useUser();
     const [isLogin, setIsLogin] = useState(true);
     const [formData, setFormData] = useState({
         email: '',
@@ -14,10 +18,45 @@ export default function Login() {
         confirmPassword: ''
     });
     const [focusedField, setFocusedField] = useState<string | null>(null);
+    const router = useRouter();
 
-    const handleSubmit = () => {
-        console.log('Form submitted:', formData);
-        alert(`${isLogin ? 'Login' : 'Registration'} submitted!`);
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        const url = isLogin
+            ? "http://localhost:3001/auth/login"
+            : "http://localhost:3001/auth/register";
+
+        const payload = isLogin
+            ? { email: formData.email, password: formData.password }
+            : { username: formData.username, email: formData.email, password: formData.password };
+
+        try {
+            const res = await axios.post(url, payload, {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            });
+
+            const data = res.data;
+
+            if (isLogin) {
+                const usernameFromAPI = data.user?.username || data.username;
+                setUsername(usernameFromAPI);
+                localStorage.setItem("username", usernameFromAPI);
+                localStorage.setItem("token", data.token);
+                router.push("/");
+            } else {
+                alert("Registration successful! You can now login.");
+                setIsLogin(true);
+            }
+        } catch (error: any) {
+            if (axios.isAxiosError(error)) {
+                alert(error.response?.data?.message || "Request failed");
+            } else {
+                alert(error.message || "Something went wrong");
+            }
+        }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,8 +116,8 @@ export default function Login() {
                         <button
                             onClick={() => setIsLogin(true)}
                             className={`flex-1 cursor-pointer py-3 rounded-xl font-bold text-base transition-all duration-300 ${isLogin
-                                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/30'
-                                    : 'bg-slate-800/50 text-slate-400 hover:text-slate-300'
+                                ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/30'
+                                : 'bg-slate-800/50 text-slate-400 hover:text-slate-300'
                                 }`}
                         >
                             Login
@@ -86,8 +125,8 @@ export default function Login() {
                         <button
                             onClick={() => setIsLogin(false)}
                             className={`flex-1 cursor-pointer py-3 rounded-xl font-bold text-base transition-all duration-300 ${!isLogin
-                                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/30'
-                                    : 'bg-slate-800/50 text-slate-400 hover:text-slate-300'
+                                ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/30'
+                                : 'bg-slate-800/50 text-slate-400 hover:text-slate-300'
                                 }`}
                         >
                             Register

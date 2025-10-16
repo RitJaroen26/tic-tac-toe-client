@@ -11,13 +11,19 @@ export default function HomePage() {
     const [showDifficulty, setShowDifficulty] = useState(false);
     const [hoveredDifficulty, setHoveredDifficulty] = useState<string | null>(null);
     const router = useRouter();
-    const [active, setAvtive] = useState(false);
 
     const handleSinglePlayer = () => {
         setShowDifficulty(true);
     };
 
     const handleMultiPlayer = () => {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            router.push("/login");
+            return;
+        }
+
         setLoading(true);
         setTimeout(() => {
             router.push("/multi-player");
