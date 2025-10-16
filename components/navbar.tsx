@@ -95,88 +95,16 @@ export default function Navbar() {
                             />
                             <NavLink
                                 label="Leaderboard"
-                                icon="🏆"
                                 active={activeLink === "leaderboard"}
                                 onClick={() => router.push('/dashboard')}
                             />
 
                             <ClientOnly>
                                 {username ? (
-                                    // <div className="relative ml-2">
-                                    //     <button
-                                    //         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                                    //         className="relative group px-5 py-2.5 rounded-xl transition-all duration-300 overflow-hidden"
-                                    //     >
-                                    //         <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-90 group-hover:opacity-100 transition-opacity"></div>
-                                    //         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-[shimmer_1.5s_ease-in-out_infinite]"></div>
-                                    //         <div className="relative flex items-center gap-2">
-                                    //             <span className="text-lg">👤</span>
-                                    //             <span className="font-bold text-white">{username}</span>
-                                    //             <span className={`text-xs transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}>▼</span>
-                                    //         </div>
-                                    //     </button>
-
-                                    //     {isDropdownOpen && (
-                                    //         <div className="absolute right-0 mt-2 w-56 animate-[slideDown_0.3s_ease-out] z-[100]">
-                                    //             <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500/30 to-purple-500/30 rounded-2xl blur-xl"></div>
-                                    //             <div className="relative bg-slate-800/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-700/50 overflow-hidden">
-
-                                    //                 {/* Profile Header */}
-                                    //                 <div className="px-4 py-3 bg-gradient-to-r from-indigo-600/20 to-purple-600/20 border-b border-slate-700/50">
-                                    //                     <div className="flex items-center gap-3">
-                                    //                         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-400 to-indigo-500 flex items-center justify-center text-xl">
-                                    //                             🎮
-                                    //                         </div>
-                                    //                         <div>
-                                    //                             <div className="font-bold text-white text-sm">{username}</div>
-                                    //                             <div className="text-xs text-slate-400">Level 42</div>
-                                    //                         </div>
-                                    //                     </div>
-                                    //                 </div>
-
-                                    //                 {/* Menu Items */}
-                                    //                 <div className="py-2">
-                                    //                     <button
-                                    //                         className="w-full text-left px-4 py-3 text-white hover:bg-indigo-600/20 transition-colors flex items-center gap-3 group"
-                                    //                         onClick={() => {
-                                    //                             setIsDropdownOpen(false);
-                                    //                             router.push('/my-profile');
-                                    //                         }}
-                                    //                     >
-                                    //                         <span className="text-xl group-hover:scale-110 transition-transform">👤</span>
-                                    //                         <span className="font-semibold">My Profile</span>
-                                    //                     </button>
-
-                                    //                     <button
-                                    //                         className="w-full text-left px-4 py-3 text-white hover:bg-indigo-600/20 transition-colors flex items-center gap-3 group"
-                                    //                         onClick={() => {
-                                    //                             setIsDropdownOpen(false);
-                                    //                             router.push('/settings');
-                                    //                         }}
-                                    //                     >
-                                    //                         <span className="text-xl group-hover:scale-110 transition-transform">⚙️</span>
-                                    //                         <span className="font-semibold">Settings</span>
-                                    //                     </button>
-                                    //                 </div>
-
-                                    //                 {/* Logout */}
-                                    //                 <div className="border-t border-slate-700/50">
-                                    //                     <button
-                                    //                         className="w-full text-left px-4 py-3 text-red-400 hover:bg-red-900/20 transition-colors flex items-center gap-3 group"
-                                    //                         onClick={handleLogout}
-                                    //                     >
-                                    //                         <span className="text-xl group-hover:scale-110 transition-transform">🚪</span>
-                                    //                         <span className="font-semibold">Logout</span>
-                                    //                     </button>
-                                    //                 </div>
-                                    //             </div>
-                                    //         </div>
-                                    //     )}
-                                    // </div>
                                     <div className="relative ml-2 dropdown-container">
                                         <button
                                             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                                            className="relative group px-6 py-3 rounded-2xl transition-all duration-300 overflow-hidden"
+                                            className="relative cursor-pointer group px-6 py-3 rounded-2xl transition-all duration-300 overflow-hidden"
                                         >
                                             <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-100 group-hover:opacity-90 transition-opacity"></div>
                                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-[shimmer_1.5s_ease-in-out_infinite]"></div>
@@ -199,20 +127,12 @@ export default function Navbar() {
 
                                         {isDropdownOpen && (
                                             <>
-                                                {/* Backdrop */}
                                                 <div className="fixed inset-0 z-[90]" onClick={() => setIsDropdownOpen(false)}></div>
 
-                                                {/* Dropdown */}
                                                 <div className="absolute right-0 mt-3 w-72 z-[100] animate-[slideDown_0.3s_ease-out]">
-                                                    {/* Glow Effect */}
                                                     <div className="absolute -inset-2 bg-gradient-to-r from-indigo-500/40 to-purple-500/40 rounded-3xl blur-2xl animate-pulse"></div>
 
                                                     <div className="relative bg-gradient-to-br from-slate-800/98 to-slate-900/98 backdrop-blur-2xl rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.8)] border border-slate-700/50 overflow-hidden">
-
-                                                        {/* Decorative top gradient */}
-                                                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 via-indigo-500 to-pink-500"></div>
-
-                                                        {/* Profile Header */}
                                                         <div className="relative px-6 py-5 bg-gradient-to-r from-indigo-600/30 via-purple-600/30 to-pink-600/20 border-b border-slate-700/50">
                                                             <div className="flex items-center gap-4">
                                                                 <div className="relative">
@@ -233,10 +153,9 @@ export default function Navbar() {
                                                             </div>
                                                         </div>
 
-                                                        {/* Menu Items */}
                                                         <div className="py-3 px-2">
                                                             <button
-                                                                className="w-full text-left px-4 py-3.5 rounded-xl text-white hover:bg-gradient-to-r hover:from-indigo-600/30 hover:to-purple-600/30 transition-all duration-200 flex items-center gap-3 group relative overflow-hidden"
+                                                                className="w-full cursor-pointer text-left px-4 py-3.5 rounded-xl text-white hover:bg-gradient-to-r hover:from-indigo-600/30 hover:to-purple-600/30 transition-all duration-200 flex items-center gap-3 group relative overflow-hidden"
                                                                 onClick={() => {
                                                                     setIsDropdownOpen(false);
                                                                     router.push('/my-profile');
@@ -256,7 +175,7 @@ export default function Navbar() {
                                                             </button>
 
                                                             <button
-                                                                className="w-full text-left px-4 py-3.5 rounded-xl text-white hover:bg-gradient-to-r hover:from-indigo-600/30 hover:to-purple-600/30 transition-all duration-200 flex items-center gap-3 group relative overflow-hidden"
+                                                                className="w-full cursor-pointer text-left px-4 py-3.5 rounded-xl text-white hover:bg-gradient-to-r hover:from-indigo-600/30 hover:to-purple-600/30 transition-all duration-200 flex items-center gap-3 group relative overflow-hidden"
                                                                 onClick={() => {
                                                                     setIsDropdownOpen(false);
                                                                     router.push('/settings');
@@ -276,7 +195,7 @@ export default function Navbar() {
                                                             </button>
 
                                                             <button
-                                                                className="w-full text-left px-4 py-3.5 rounded-xl text-white hover:bg-gradient-to-r hover:from-indigo-600/30 hover:to-purple-600/30 transition-all duration-200 flex items-center gap-3 group relative overflow-hidden"
+                                                                className="w-full cursor-pointer text-left px-4 py-3.5 rounded-xl text-white hover:bg-gradient-to-r hover:from-indigo-600/30 hover:to-purple-600/30 transition-all duration-200 flex items-center gap-3 group relative overflow-hidden"
                                                                 onClick={() => {
                                                                     setIsDropdownOpen(false);
                                                                     router.push('/achievements');
@@ -299,7 +218,7 @@ export default function Navbar() {
                                                         {/* Logout Section */}
                                                         <div className="border-t border-slate-700/50 p-2">
                                                             <button
-                                                                className="w-full text-left px-4 py-3.5 rounded-xl text-red-400 hover:bg-red-900/30 transition-all duration-200 flex items-center gap-3 group relative overflow-hidden"
+                                                                className="w-full cursor-pointer text-left px-4 py-3.5 rounded-xl text-red-400 hover:bg-red-900/30 transition-all duration-200 flex items-center gap-3 group relative overflow-hidden"
                                                                 onClick={handleLogout}
                                                             >
                                                                 <div className="absolute inset-0 bg-gradient-to-r from-red-600/0 via-red-600/20 to-red-600/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
@@ -362,23 +281,60 @@ export default function Navbar() {
                                     <div className="relative">
                                         <button
                                             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                                            className="w-full text-left px-6 py-4 bg-indigo-600/40 rounded-2xl font-bold text-white hover:bg-indigo-600/60 transition"
+                                            className="w-full relative group overflow-hidden rounded-2xl"
                                         >
-                                            {username}
+                                            <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl blur-lg opacity-60"></div>
+                                            <div className="relative px-6 py-4 bg-gradient-to-r from-indigo-600/50 to-purple-600/50 border-2 border-indigo-400/30 rounded-2xl">
+                                                <div className="flex items-center justify-between">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-400 to-indigo-500 flex items-center justify-center text-xl shadow-lg">
+                                                            🎮
+                                                        </div>
+                                                        <span className="font-bold text-lg text-white">{username}</span>
+                                                    </div>
+                                                    <svg
+                                                        className={`w-5 h-5 text-white transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                        stroke="currentColor"
+                                                    >
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                                    </svg>
+                                                </div>
+                                            </div>
                                         </button>
+
                                         {isDropdownOpen && (
-                                            <div className="mt-2 flex flex-col gap-2 px-4">
+                                            <div className="mt-3 flex flex-col gap-2 animate-[slideDown_0.3s_ease-out]">
                                                 <button
-                                                    className="w-full text-left px-4 py-2 bg-slate-700 rounded-xl hover:bg-slate-600"
-                                                    onClick={() => router.push('/profile')}
+                                                    className="relative group overflow-hidden rounded-xl bg-slate-800/50 hover:bg-slate-700/50 transition-all"
+                                                    onClick={() => {
+                                                        setIsDropdownOpen(false);
+                                                        setIsMenuOpen(false);
+                                                        router.push('/my-profile');
+                                                    }}
                                                 >
-                                                    My Profile
+                                                    <div className="px-4 py-3 flex items-center gap-3">
+                                                        <div className="w-9 h-9 rounded-lg bg-indigo-600/30 flex items-center justify-center">
+                                                            <span className="text-lg">👤</span>
+                                                        </div>
+                                                        <span className="font-semibold text-white">My Profile</span>
+                                                    </div>
                                                 </button>
+
                                                 <button
-                                                    className="w-full text-left px-4 py-2 bg-slate-700 rounded-xl hover:bg-slate-600"
-                                                    onClick={handleLogout}
+                                                    className="relative group overflow-hidden rounded-xl bg-red-900/20 hover:bg-red-900/40 transition-all"
+                                                    onClick={() => {
+                                                        handleLogout();
+                                                        setIsMenuOpen(false);
+                                                    }}
                                                 >
-                                                    Logout
+                                                    <div className="px-4 py-3 flex items-center gap-3">
+                                                        <div className="w-9 h-9 rounded-lg bg-red-600/30 flex items-center justify-center">
+                                                            <span className="text-lg">🚪</span>
+                                                        </div>
+                                                        <span className="font-semibold text-red-400">Logout</span>
+                                                    </div>
                                                 </button>
                                             </div>
                                         )}
@@ -404,20 +360,11 @@ function NavLink({ label, icon, active, onClick }: { label: string; icon?: strin
     return (
         <button
             onClick={onClick}
-            className="relative group px-5 py-2.5 rounded-xl transition-all duration-300"
+            className="relative cursor-pointer group px-5 py-2.5 rounded-xl transition-all duration-300"
         >
-            <div className={`absolute inset-0 rounded-xl transition-all duration-300 ${active
-                ? 'bg-gradient-to-r from-indigo-600/40 to-purple-600/40 shadow-[0_0_20px_rgba(99,102,241,0.3)]'
-                : 'bg-slate-800/0 group-hover:bg-slate-800/60'
-                }`}></div>
-
             <div className="absolute inset-0 overflow-hidden rounded-xl">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-[shimmer_1.5s_ease-in-out_infinite]"></div>
             </div>
-
-            {active && (
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-0.5 bg-gradient-to-r from-cyan-400 via-indigo-400 to-pink-400 rounded-full animate-[glow-pulse_2s_ease-in-out_infinite]"></div>
-            )}
 
             <div className="relative flex items-center gap-2">
                 {icon && <span className="text-lg">{icon}</span>}
