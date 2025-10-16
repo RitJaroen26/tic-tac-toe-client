@@ -242,7 +242,6 @@ export default function Navbar() {
                                 ) : (
                                     <NavLink
                                         label="Login"
-                                        icon="🏆"
                                         active={activeLink === "login"}
                                         onClick={() => router.push('/login')}
                                     />
@@ -360,10 +359,10 @@ function NavLink({ label, icon, active, onClick }: { label: string; icon?: strin
     return (
         <button
             onClick={onClick}
-            className="relative cursor-pointer group px-5 py-2.5 rounded-xl transition-all duration-300"
+            className="relative cursor-pointer group px-5 py-2.5 rounded-xl transition-all duration-300 bg-none hover:bg-gradient-to-r from-indigo-600/40 to-purple-600/40 hover:shadow-[0_0_20px_rgba(99,102,241,0.3)]"
         >
             <div className="absolute inset-0 overflow-hidden rounded-xl">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-[shimmer_1.5s_ease-in-out_infinite]"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/40 to-purple-600/40 shadow-[0_0_20px_rgba(99,102,241,0.3)] opacity-0"></div>
             </div>
 
             <div className="relative flex items-center gap-2">

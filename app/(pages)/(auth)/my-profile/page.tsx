@@ -3,8 +3,10 @@
 import { useState, useEffect } from "react";
 import Particles from "@/components/particles";
 import GridBackground from "@/components/gridBackground";
+import { useUser } from "@/context/userContext";
 
 export default function ProfilePage() {
+    const { username, setUsername } = useUser();
     const [activeTab, setActiveTab] = useState('stats');
     const [isEditing, setIsEditing] = useState(false);
     const [hoveredStat, setHoveredStat] = useState<string | null>(null);
@@ -158,7 +160,7 @@ export default function ProfilePage() {
                                     <div>
                                         <div className="flex flex-col lg:flex-row lg:items-center gap-4 mb-3">
                                             <h1 className="text-3xl md:text-5xl lg:text-6xl font-black bg-gradient-to-r from-cyan-300 via-indigo-400 to-pink-400 bg-clip-text text-transparent tracking-tight drop-shadow-[0_0_30px_rgba(99,102,241,0.5)]">
-                                                {userData.username}
+                                                {username}
                                             </h1>
                                         </div>
 
