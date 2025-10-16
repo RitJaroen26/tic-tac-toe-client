@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Lato, Nunito } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import { UserProvider } from "@/context/userContext";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const lato = Lato({
+  subsets: ['latin'],
+  weight: ['400', '700'], 
+  variable: '--font-lato',
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const nunito = Nunito({
+  subsets: ['latin'],    
+  weight: ['400', '700'],    
+  variable: '--font-nunito', 
 });
 
 export const metadata: Metadata = {
@@ -27,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${nunito.className}`}
       >
         <UserProvider>
           <Navbar />
