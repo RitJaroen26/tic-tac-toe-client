@@ -11,6 +11,7 @@ export default function HomePage() {
     const [showDifficulty, setShowDifficulty] = useState(false);
     const [hoveredDifficulty, setHoveredDifficulty] = useState<string | null>(null);
     const router = useRouter();
+    const [active, setAvtive] = useState(false);
 
     const handleSinglePlayer = () => {
         setShowDifficulty(true);

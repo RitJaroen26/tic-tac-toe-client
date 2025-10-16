@@ -10,7 +10,6 @@ export default function ProfilePage() {
     const [hoveredStat, setHoveredStat] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
     const [showHistoryModal, setShowHistoryModal] = useState(false);
-    const [active, setActive] = useState("");
 
     useEffect(() => {
         if (showHistoryModal) {
